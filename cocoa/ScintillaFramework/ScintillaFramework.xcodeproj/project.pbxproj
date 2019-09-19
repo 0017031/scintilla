@@ -234,6 +234,9 @@
 		FDC7442CAD70B9A67EF1639D /* LexSAS.cxx in Sources */ = {isa = PBXBuildFile; fileRef = A95147A1AB7CADB00DAFE724 /* LexSAS.cxx */; };
 		AE894E1CB7328CAE5B2EF47E /* LexX12.cxx in Sources */ = {isa = PBXBuildFile; fileRef = ADA64364A443F3E3F02D294E /* LexX12.cxx */; };
 		902B40FE926FE48538B168F1 /* LexDataflex.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 362E48F5A7F79598CB0B037D /* LexDataflex.cxx */; };
+		DE7341B8BD852DFFC8396AD3 /* LexObjC.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 66FC440095FE3C0456AE77C9 /* LexObjC.cxx */; };
+		968E4D70B08D745F52339C5F /* LexSearchResult.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 5583447B960422399CA65E8A /* LexSearchResult.cxx */; };
+		0B9C403AB3262BEF3F8F806D /* LexUser.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 453347C8BBB5D050575F28C9 /* LexUser.cxx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -471,6 +474,9 @@
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		ADA64364A443F3E3F02D294E /* LexX12.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LexX12.cxx; path = ../../lexers/LexX12.cxx; sourceTree = SOURCE_ROOT; };
 		362E48F5A7F79598CB0B037D /* LexDataflex.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LexDataflex.cxx; path = ../../lexers/LexDataflex.cxx; sourceTree = SOURCE_ROOT; };
+		66FC440095FE3C0456AE77C9 /* LexObjC.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LexObjC.cxx; path = ../../lexers/LexObjC.cxx; sourceTree = SOURCE_ROOT; };
+		5583447B960422399CA65E8A /* LexSearchResult.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LexSearchResult.cxx; path = ../../lexers/LexSearchResult.cxx; sourceTree = SOURCE_ROOT; };
+		453347C8BBB5D050575F28C9 /* LexUser.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LexUser.cxx; path = ../../lexers/LexUser.cxx; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -638,6 +644,7 @@
 				114B6EEB11FA7526004FB6AB /* LexNimrod.cxx */,
 				114B6EEC11FA7526004FB6AB /* LexNsis.cxx */,
 				28B6470A1B54C0720009DC49 /* LexNull.cxx */,
+				66FC440095FE3C0456AE77C9 /* LexObjC.cxx */,
 				114B6EED11FA7526004FB6AB /* LexOpal.cxx */,
 				11594BE7155B91DF0099E1FA /* LexOScript.cxx */,
 				114B6EEF11FA7526004FB6AB /* LexPascal.cxx */,
@@ -659,6 +666,7 @@
 				1160E0371803651C00BCEBCB /* LexRust.cxx */,
 				A95147A1AB7CADB00DAFE724 /* LexSAS.cxx */,
 				114B6EFC11FA7526004FB6AB /* LexScriptol.cxx */,
+				5583447B960422399CA65E8A /* LexSearchResult.cxx */,
 				114B6EFD11FA7526004FB6AB /* LexSmalltalk.cxx */,
 				114B6EFE11FA7526004FB6AB /* LexSML.cxx */,
 				114B6EFF11FA7526004FB6AB /* LexSorcus.cxx */,
@@ -674,6 +682,7 @@
 				117ACE9014A29A1E002876F9 /* LexTCMD.cxx */,
 				114B6F0711FA7526004FB6AB /* LexTeX.cxx */,
 				114B6F0811FA7526004FB6AB /* LexTxt2tags.cxx */,
+				453347C8BBB5D050575F28C9 /* LexUser.cxx */,
 				114B6F0911FA7526004FB6AB /* LexVB.cxx */,
 				114B6F0A11FA7526004FB6AB /* LexVerilog.cxx */,
 				114B6F0B11FA7526004FB6AB /* LexVHDL.cxx */,
@@ -1138,6 +1147,9 @@
 				00724A59981D34F11A3D162F /* LexCIL.cxx in Sources */,
 				AE894E1CB7328CAE5B2EF47E /* LexX12.cxx in Sources */,
 				902B40FE926FE48538B168F1 /* LexDataflex.cxx in Sources */,
+				DE7341B8BD852DFFC8396AD3 /* LexObjC.cxx in Sources */,
+				968E4D70B08D745F52339C5F /* LexSearchResult.cxx in Sources */,
+				0B9C403AB3262BEF3F8F806D /* LexUser.cxx in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

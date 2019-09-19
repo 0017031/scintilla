@@ -1,0 +1,124 @@
+cmake_minimum_required(VERSION 3.12)
+set(CMAKE_CXX_STANDARD 20)
+#default to release build
+if (NOT CMAKE_BUILD_TYPE)
+    message(STATUS "No build type selected, default to Release")
+    set(CMAKE_BUILD_TYPE "Release")
+endif ()
+file(STRINGS version.txt v_major_minor_patch)
+string(SUBSTRING ${v_major_minor_patch} 0 1 v_major)
+string(SUBSTRING ${v_major_minor_patch} 1 1 v_minor)
+string(SUBSTRING ${v_major_minor_patch} 2 1 v_patch)
+
+
+project(SciLexer_for_notepad LANGUAGES CXX VERSION ${v_major}.${v_minor}.${v_patch})
+set(CMAKE_VERBOSE_MAKEFILE OFF)
+option(BUILD_32BIT "On, if building 32bit" ON) # command line: cmake . -DBUILD_32BIT=OFF or -DBUILD_32BIT=ON
+
+#if (NOT MSVC)
+#    set(CMAKE_CXX_FLAGS_DEBUG "-Og" CACHE STRING "-Og for debug" FORCE)
+#endif ()
+
+#message
+message(STATUS "SciLexer_for_notepad,\n\tPROJECT_SOURCE_DIR=${PROJECT_SOURCE_DIR}")
+message("\tPROJECT_VERSION=${PROJECT_VERSION}")
+message("\tCMAKE_BUILD_TYPE= ${CMAKE_BUILD_TYPE}")
+#message("\tCMAKE_CXX_FLAGS= ${CMAKE_CXX_FLAGS}")
+if (CMAKE_BUILD_TYPE STREQUAL Debug)
+    message("\tCMAKE_CXX_FLAGS_DEBUG= ${CMAKE_CXX_FLAGS_DEBUG}")
+endif ()
+
+
+#set(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_MULTITHREADED ON)
+find_package(Boost REQUIRED COMPONENTS regex)
+
+add_library(ScintillaBaseL_ScintillaWinL OBJECT) #-D SCI_LEXER for these 2 file
+add_library(BOOST_LEXer OBJECT)
+add_library(SciLexer_notepad_OBJ OBJECT)
+
+add_library(SciLexer_notepad_Static STATIC EXCLUDE_FROM_ALL)
+add_library(SciLexer_notepad_Shared SHARED)
+
+#-D SCI_LEXER for these 2 file
+target_sources(ScintillaBaseL_ScintillaWinL PRIVATE src/ScintillaBase.cxx win32/ScintillaWin.cxx)
+target_include_directories(ScintillaBaseL_ScintillaWinL PRIVATE include src lexlib win32 boostregex)
+target_compile_definitions(ScintillaBaseL_ScintillaWinL PRIVATE SCI_LEXER SCI_OWNREGEX) #-D SCI_LEXER for these 2 file
+
+#Boost_lexer
+target_sources(BOOST_LEXer PRIVATE boostregex/BoostRegExSearch.cxx boostregex/UTF8DocumentIterator.cxx)
+target_include_directories(BOOST_LEXer PRIVATE include src lexlib win32 boostregex)
+target_compile_definitions(BOOST_LEXer PRIVATE SCI_OWNREGEX)
+
+## obj
+target_sources(SciLexer_notepad_OBJ PRIVATE
+        lexers/LexA68k.cxx lexers/LexAPDL.cxx lexers/LexASY.cxx lexers/LexAU3.cxx lexers/LexAVE.cxx lexers/LexAVS.cxx lexers/LexAbaqus.cxx lexers/LexAda.cxx lexers/LexAsm.cxx lexers/LexAsn1.cxx lexers/LexBaan.cxx lexers/LexBash.cxx lexers/LexBasic.cxx lexers/LexBatch.cxx lexers/LexBibTeX.cxx lexers/LexBullant.cxx lexers/LexCLW.cxx lexers/LexCOBOL.cxx lexers/LexCPP.cxx lexers/LexCSS.cxx lexers/LexCaml.cxx lexers/LexCmake.cxx lexers/LexCoffeeScript.cxx lexers/LexConf.cxx lexers/LexCrontab.cxx lexers/LexCsound.cxx lexers/LexD.cxx lexers/LexDMAP.cxx lexers/LexDMIS.cxx lexers/LexDiff.cxx lexers/LexECL.cxx lexers/LexEDIFACT.cxx lexers/LexEScript.cxx lexers/LexEiffel.cxx lexers/LexErlang.cxx lexers/LexErrorList.cxx lexers/LexFlagship.cxx lexers/LexForth.cxx lexers/LexFortran.cxx lexers/LexGAP.cxx lexers/LexGui4Cli.cxx lexers/LexHTML.cxx lexers/LexHaskell.cxx lexers/LexHex.cxx lexers/LexIndent.cxx lexers/LexInno.cxx lexers/LexJSON.cxx lexers/LexKVIrc.cxx lexers/LexKix.cxx lexers/LexLaTeX.cxx lexers/LexLisp.cxx lexers/LexLout.cxx lexers/LexLua.cxx lexers/LexMMIXAL.cxx lexers/LexMPT.cxx lexers/LexMSSQL.cxx lexers/LexMagik.cxx lexers/LexMake.cxx lexers/LexMarkdown.cxx lexers/LexMatlab.cxx lexers/LexMaxima.cxx lexers/LexMetapost.cxx lexers/LexModula.cxx lexers/LexMySQL.cxx lexers/LexNim.cxx lexers/LexNimrod.cxx lexers/LexNsis.cxx lexers/LexNull.cxx lexers/LexOScript.cxx lexers/LexObjC.cxx lexers/LexOpal.cxx lexers/LexPB.cxx lexers/LexPLM.cxx lexers/LexPO.cxx lexers/LexPOV.cxx lexers/LexPS.cxx lexers/LexPascal.cxx lexers/LexPerl.cxx lexers/LexPowerPro.cxx lexers/LexPowerShell.cxx lexers/LexProgress.cxx lexers/LexProps.cxx lexers/LexPython.cxx lexers/LexR.cxx lexers/LexRebol.cxx lexers/LexRegistry.cxx lexers/LexRuby.cxx lexers/LexRust.cxx lexers/LexSAS.cxx lexers/LexSML.cxx lexers/LexSQL.cxx lexers/LexSTTXT.cxx lexers/LexScriptol.cxx lexers/LexSearchResult.cxx lexers/LexSmalltalk.cxx lexers/LexSorcus.cxx lexers/LexSpecman.cxx lexers/LexSpice.cxx lexers/LexStata.cxx lexers/LexTACL.cxx lexers/LexTADS3.cxx lexers/LexTAL.cxx lexers/LexTCL.cxx lexers/LexTCMD.cxx lexers/LexTeX.cxx lexers/LexTxt2tags.cxx lexers/LexUser.cxx lexers/LexVB.cxx lexers/LexVHDL.cxx lexers/LexVerilog.cxx lexers/LexVisualProlog.cxx lexers/LexYAML.cxx lexers/LexCIL.cxx lexers/lexX12.cxx
+        lexlib/Accessor.cxx lexlib/CharacterCategory.cxx lexlib/CharacterSet.cxx lexlib/DefaultLexer.cxx lexlib/LexerBase.cxx lexlib/LexerModule.cxx lexlib/LexerSimple.cxx lexlib/PropSetSimple.cxx lexlib/StyleContext.cxx lexlib/WordList.cxx
+        src/AutoComplete.cxx src/CallTip.cxx src/CaseConvert.cxx src/CaseFolder.cxx src/Catalogue.cxx src/CellBuffer.cxx src/CharClassify.cxx src/ContractionState.cxx src/DBCS.cxx src/Decoration.cxx src/Document.cxx src/EditModel.cxx src/EditView.cxx src/Editor.cxx src/ExternalLexer.cxx src/Indicator.cxx src/KeyMap.cxx src/LineMarker.cxx src/MarginView.cxx src/PerLine.cxx src/PositionCache.cxx src/RESearch.cxx src/RunStyles.cxx src/Selection.cxx src/Style.cxx src/UniConversion.cxx src/ViewStyle.cxx src/XPM.cxx src/UniqueString.cxx
+        win32/HanjaDic.cxx win32/PlatWin.cxx
+        win32/ScintillaDLL.cxx
+        win32/ScintRes.rc)
+target_include_directories(SciLexer_notepad_OBJ PRIVATE include src lexlib win32 boostregex)
+target_compile_definitions(SciLexer_notepad_OBJ PRIVATE SCI_OWNREGEX) # no SCI_LEXER for other files
+
+##Scilexer.a
+target_sources(SciLexer_notepad_Static PRIVATE
+        $<TARGET_OBJECTS:ScintillaBaseL_ScintillaWinL> $<TARGET_OBJECTS:BOOST_LEXer> $<TARGET_OBJECTS:SciLexer_notepad_OBJ>)
+target_link_libraries(SciLexer_notepad_Static PRIVATE imm32 msimg32)
+target_link_libraries(SciLexer_notepad_Static PRIVATE Boost::regex)
+target_include_directories(SciLexer_notepad_Static PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
+## Scilexer.dll
+target_sources(SciLexer_notepad_Shared PRIVATE
+        $<TARGET_OBJECTS:ScintillaBaseL_ScintillaWinL> $<TARGET_OBJECTS:BOOST_LEXer> $<TARGET_OBJECTS:SciLexer_notepad_OBJ>)
+
+target_include_directories(SciLexer_notepad_Shared PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_link_libraries(SciLexer_notepad_Shared PUBLIC Boost::regex)
+
+# set(LIBS -limm32 -lmsimg32 ${LIBSMINGW}) # others "-lgdi32 -luser32 -lole32 -luuid  -loleaut32 " are set by cmake
+target_link_libraries(SciLexer_notepad_Shared PRIVATE imm32 msimg32)
+target_link_options(SciLexer_notepad_Shared PRIVATE -static -Wl,--enable-runtime-pseudo-reloc-v2 -Wl,--add-stdcall-alias -mwindows -mwin32)
+set_target_properties(SciLexer_notepad_Shared PROPERTIES
+        # RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin
+        DEFINE_SYMBOL ""
+        OUTPUT_NAME SciLexer                   # general case, and when -DCMAKE_BUILD_TYPE is empty
+        OUTPUT_NAME_DEBUG SciLexer_$<CONFIG>  # special case, when -DCMAKE_BUILD_TYPE=Debug
+        VERSION ${PROJECT_VERSION}
+        )
+
+if (NOT MSVC)
+if (BUILD_32BIT)
+    target_compile_options(SciLexer_notepad_Shared PRIVATE -m32 -march=native)
+else ()
+    target_compile_options(SciLexer_notepad_Shared PRIVATE -m64 -march=native)
+endif ()
+
+    target_compile_options(SciLexer_notepad_Shared PRIVATE
+#            -Wfatal-errors -Wall -Wextra -pedantic -fpermissive # -Werror
+            $<$<CONFIG:Debug>:  -g> # -Og
+            $<$<CONFIG:Release>:-O3 -s>
+            )
+
+endif()
+
+
+
+#        -D SCI_NAMESPACE
+#        -D _MT -D _DLL -D WIN32
+#        -D _WINDLL -D _UNICODE -D UNICODE
+#        -D _WINDOWS -D _USRDLL
+#        -D _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES
+
+#option(TEMP_HIDE_SOME_WARNINGS "On, if need -Wno-pointer-arith -Wno-write-strings" OFF)
+#if (TEMP_HIDE_SOME_WARNINGS)
+#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-pointer-arith -Wno-write-strings -Wno-conversion-null")
+#endif ()
+
+#        SCI_NAMESPACE
+
+#_CRT_SECURE_NO_DEPRECATE
+
+#message("v_major_minor_patch=${v_major_minor_patch}")
+#message("v_major=${v_major}")
+#message("v_minor=${v_minor}")
+#message("v_patch=${v_patch}")

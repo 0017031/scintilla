@@ -1,0 +1,11 @@
+.vs/
+__*__/
+.idea/
+*build*/
+debug/
+packages/
+win32/release/
+
+*.vcxproj.user
+*.orig
+*.pyc

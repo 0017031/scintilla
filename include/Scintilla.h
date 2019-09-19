@@ -1264,4 +1264,6 @@ struct SCNotification {
 
 #endif
 
+
+#include "Scintilla_npp_include.h"
 #endif

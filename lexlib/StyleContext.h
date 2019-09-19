@@ -205,6 +205,9 @@ public:
 	bool MatchIgnoreCase(const char *s);
 	void GetCurrent(char *s, Sci_PositionU len);
 	void GetCurrentLowered(char *s, Sci_PositionU len);
+	
+	bool MatchIgnoreCase2(const char *s);
+	
 };
 
 }

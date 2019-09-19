@@ -177,6 +177,7 @@ LEXOBJS=\
 	$(DIR_O)\LexNimrod.obj \
 	$(DIR_O)\LexNsis.obj \
 	$(DIR_O)\LexNull.obj \
+	$(DIR_O)\LexObjC.obj \
 	$(DIR_O)\LexOpal.obj \
 	$(DIR_O)\LexOScript.obj \
 	$(DIR_O)\LexPascal.obj \
@@ -198,6 +199,7 @@ LEXOBJS=\
 	$(DIR_O)\LexRust.obj \
 	$(DIR_O)\LexSAS.obj \
 	$(DIR_O)\LexScriptol.obj \
+	$(DIR_O)\LexSearchResult.obj \
 	$(DIR_O)\LexSmalltalk.obj \
 	$(DIR_O)\LexSML.obj \
 	$(DIR_O)\LexSorcus.obj \
@@ -213,6 +215,7 @@ LEXOBJS=\
 	$(DIR_O)\LexTCMD.obj \
 	$(DIR_O)\LexTeX.obj \
 	$(DIR_O)\LexTxt2tags.obj \
+	$(DIR_O)\LexUser.obj \
 	$(DIR_O)\LexVB.obj \
 	$(DIR_O)\LexVerilog.obj \
 	$(DIR_O)\LexVHDL.obj \
@@ -280,4 +283,3 @@ $(DIR_O)\ScintillaWinL.obj: ScintillaWin.cxx
 !INCLUDE nmdeps.mak
 
 !ENDIF
-
