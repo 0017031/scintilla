@@ -1,0 +1,7 @@
+E:/don_Not_sync/notepad++_src/myScintilla_submodule/ninja_64build/CMakeFiles/rebuild_cache.dir
+E:/don_Not_sync/notepad++_src/myScintilla_submodule/ninja_64build/CMakeFiles/SciLexer_notepad_Static.dir
+E:/don_Not_sync/notepad++_src/myScintilla_submodule/ninja_64build/CMakeFiles/BOOST_LEXer.dir
+E:/don_Not_sync/notepad++_src/myScintilla_submodule/ninja_64build/CMakeFiles/ScintillaBaseL_ScintillaWinL.dir
+E:/don_Not_sync/notepad++_src/myScintilla_submodule/ninja_64build/CMakeFiles/SciLexer_notepad_OBJ.dir
+E:/don_Not_sync/notepad++_src/myScintilla_submodule/ninja_64build/CMakeFiles/SciLexer_notepad_Shared.dir
+E:/don_Not_sync/notepad++_src/myScintilla_submodule/ninja_64build/CMakeFiles/edit_cache.dir
